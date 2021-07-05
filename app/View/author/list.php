@@ -1,9 +1,9 @@
 <?php
-if (isset($authors)) {
-    print_r($authors);
-    die();
-}
-?>
+//if (isset($authors)) {
+//    print_r($authors);
+//    die();
+//}
+//?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -29,12 +29,15 @@ if (isset($authors)) {
     </thead>
     <tbody>
     <?php if (isset($authors)) {
+//        echo "<pre>";
+        //var_dump($authors);
         foreach ($authors as $author) :?>
             <tr>
-                <th scope="row"><?php echo $author->getId()?></th>
+                <td scope="row"><?php echo $author->getId()?></td>
                 <td><?php echo $author->getFirstName()?></td>
-                <td>Otto</td>
-                <td>@mdo</td>
+                <td><?php echo $author->getLastName()?></td>
+                <td><?php echo $author->getEmail()?></td>
+                <td><?php echo $author->getBirthdate()?></td>
             </tr>
         <?php endforeach;
     } ?>

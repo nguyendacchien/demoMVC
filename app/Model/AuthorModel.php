@@ -3,6 +3,8 @@
 
 namespace App\Model;
 
+use PDO;
+
 class AuthorModel //CRUD with Database
 {
     private $dbConnect;
@@ -18,8 +20,7 @@ class AuthorModel //CRUD with Database
             $sql = "SELECT * FROM `authors`";
             $stmt = $this->dbConnect->connect()->query($sql);
             $stmt->execute();
-            die($stmt->fetchAll());
-            return $stmt->fetchAll();
+            return $stmt->fetchAll(PDO::FETCH_OBJ);
         }catch (\PDOException $exception){
             die($exception->getMessage());
         }

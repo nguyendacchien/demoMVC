@@ -14,8 +14,7 @@ class AuthorController
 
     public function showAllAuthors()
     {
-        die("test");
         $authors = $this->authorModel->getAll();
-        include_once 'app/views/author/list.php';
+        include_once 'app/View/author/list.php';
     }
 }
