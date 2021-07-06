@@ -14,7 +14,7 @@
 <div class="col-12 col-md-12 mt-2">
     <div class="card">
         <div class="card-header">
-            Thêm mới author
+           <h3> Thêm mới author</h3>
         </div>
         <div class="card-body">
             <div class="col-12">

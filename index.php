@@ -19,7 +19,7 @@ use App\Controller\AuthorController;
 <div class="container">
     <nav class="navbar navbar-light bg-light">
         <div class="container-fluid">
-            <a class="navbar-brand" href="index.php">Trang chủ</a>
+            <a class="navbar-brand" href="index.php"><h2>Trang chủ</h2></a>
         </div>
     </nav>
     <?php
@@ -30,8 +30,7 @@ use App\Controller\AuthorController;
             $controller->add();
             break;
         case 'delete':
-            $id = $_REQUEST['page'];
-            $controller->callDelete($id);
+            $controller->callDelete();
             break;
         case 'edit':
             $controller->edit();

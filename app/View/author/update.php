@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html lang="en">
 <head>
@@ -15,39 +14,49 @@
 <div class="col-12 col-md-12 mt-2">
     <div class="card">
         <div class="card-header">
-            Update author
+           <h3> Update author</h3>
         </div>
         <div class="card-body">
             <div class="col-12">
                 <form method="post">
                     <div class="mb-3">
-                        <label class="form-label">firstName</label>
-                        <input type="text" name="first-name" class="form-control">
-                        <?php if (isset($errors['first-name'])): ?>
-                            <p class="text-danger"><?php echo $errors['first-name'] ?></p>
-                        <?php endif; ?>
+                        <?php if (isset($authors)) {
+                            foreach ($authors as $item): ?>
+                                <label class="form-label">firstName</label>
+                                <input type="text" name="first-name" class="form-control"
+                                       value="<?php echo $item->firstName ?>">
+                                <?php if (isset($errors['first-name'])): ?>
+                                    <p class="text-danger"><?php echo $errors['first-name'] ?></p>
+                                <?php endif; ?>
+
+
+                                <label class="form-label">lastName</label>
+                                <input type="text" name="last-name" class="form-control"
+                                       value="<?php echo $item->lastName ?>">
+                                <?php if (isset($errors['last-name'])): ?>
+                                    <p class="text-danger"><?php echo $errors['last-name'] ?></p>
+                                <?php endif; ?>
+
+
+                                <label class="form-label">Email</label>
+                                <input type="email" class="form-control" name="email"
+                                       value="<?php echo $item->email ?>">
+                                <?php if (isset($errors['email'])): ?>
+                                    <p class="text-danger"><?php echo $errors['email'] ?></p>
+                                <?php endif; ?>
+
+
+                                <label class="form-label">Địa chỉ</label>
+                                <input type="date" class="form-control" name="birthdate"
+                                       value="<?php echo $item->birthdate ?>">
+                                <?php if (isset($errors['birthdate'])): ?>
+                                    <p class="text-danger"><?php echo $errors['birthdate'] ?></p>
+                                <?php endif; ?>
+                            <?php endforeach;
+                        } ?>
+
                     </div>
-                    <div class="mb-3">
-                        <label class="form-label">lastName</label>
-                        <input type="text" name="last-name" class="form-control">
-                        <?php if (isset($errors['last-name'])): ?>
-                            <p class="text-danger"><?php echo $errors['last-name'] ?></p>
-                        <?php endif; ?>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Email</label>
-                        <input type="email" class="form-control" name="email">
-                        <?php if (isset($errors['email'])): ?>
-                            <p class="text-danger"><?php echo $errors['email'] ?></p>
-                        <?php endif; ?>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Địa chỉ</label>
-                        <input type="date" class="form-control" name="birthdate">
-                        <?php if (isset($errors['birthdate'])): ?>
-                            <p class="text-danger"><?php echo $errors['birthdate'] ?></p>
-                        <?php endif; ?>
-                    </div>
+
                     <button type="submit" class="btn btn-primary">Lưu</button>
                     <a type="button" href="index.php" class="btn btn-secondary">Quay lại</a>
                 </form>
@@ -55,8 +64,6 @@
         </div>
     </div>
 </div>
-<!-- Optional JavaScript -->
-<!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>

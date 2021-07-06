@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Model;
+
 use PDO;
 use PDOException;
 
@@ -20,8 +21,8 @@ class DBConnect
     public function connect()
     {
         try {
-        return new PDO($this->dsn, $this->username,$this->password);
-        }catch (PDOException $exception){
+            return new PDO($this->dsn, $this->username, $this->password);
+        } catch (PDOException $exception) {
             die($exception->getMessage());
         }
     }

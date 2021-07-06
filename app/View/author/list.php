@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html lang="en">
 <head>
@@ -13,7 +12,7 @@
 </head>
 <body>
 <div class="container">
-    <a href="index.php?page=add" class="btn btn-lg btn-success mb-3 mt-3">Add Author</a>
+    <a href="./index.php?page=add" class="btn btn-lg btn-success mb-3 mt-3">Add Author</a>
     <table class="table">
         <thead>
         <tr>
@@ -30,13 +29,15 @@
         <?php if (isset($authors)) {
             foreach ($authors as $author) :?>
                 <tr>
-                    <td><?php echo $author->getId()?></td>
-                    <td><?php echo $author->getFirstName()?></td>
-                    <td><?php echo $author->getLastName()?></td>
-                    <td><?php echo $author->getEmail()?></td>
-                    <td><?php echo $author->getBirthdate()?></td>
-                    <td><a href="index.php?page=delete&id=<?php echo $author->getID() ?>" onclick="return confirm('bạn chắc chắn muốn xóa?')">Delete</a></td>
-                    <td><a href="index.php?page=edit&id=<?php echo $author->getID() ?>">Edit</a></td>
+                    <td><?php echo $author->getId() ?></td>
+                    <td><?php echo $author->getFirstName() ?></td>
+                    <td><?php echo $author->getLastName() ?></td>
+                    <td><?php echo $author->getEmail() ?></td>
+                    <td><?php echo $author->getBirthdate() ?></td>
+                    <td><a class="btn btn-warning " href="index.php?page=edit&id=<?php echo $author->getID() ?>">Edit</a></td>
+                    <td><a class="btn btn- " href="index.php?page=delete&id=<?php echo $author->getID() ?>"
+                           onclick="return confirm('bạn chắc chắn muốn xóa?')">Delete</a></td>
+
                 </tr>
             <?php endforeach;
         } ?>

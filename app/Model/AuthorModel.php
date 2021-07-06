@@ -8,6 +8,7 @@ use PDO;
 class AuthorModel //CRUD with Database
 {
     private $dbConnect;
+
     public function __construct()
     {
         $this->dbConnect = new DBConnect();
@@ -22,7 +23,7 @@ class AuthorModel //CRUD with Database
             $stmt->execute();
             $data = $stmt->fetchAll(PDO::FETCH_OBJ);
             return $this->convertToObject($data);
-        }catch (\PDOException $exception){
+        } catch (\PDOException $exception) {
             die($exception->getMessage());
         }
 
@@ -31,20 +32,23 @@ class AuthorModel //CRUD with Database
     //Lấy ra Author theo id
     public function getById($id)
     {
-        $authors = $this->getAll();
-        foreach ($authors as $author){
-            if ($author->getID()==$id){
-                return $author;
-            }
+        $sql = 'SELECT * FROM `authors` where id=?';
+        $stmt = $this->dbConnect->connect()->prepare($sql);
+        $stmt->bindParam(1, $id);
+        $stmt->execute();
+        $result = $stmt->fetchAll();
+        $authors = [];
+        foreach ($result as $item) {
+            $author = new Author($item['first_name'], $item['last_name'], $item['email'], $item['birthdate']);
+            $author->setId($id);
+            $authors[] = $author;
         }
+        return $authors;
     }
 
     //Tạo Author
     public function create($author)
     {
-//        echo "<pre>";
-//        var_dump($author);
-//        die();
         $sql = "INSERT INTO authors (first_name, last_name, email, birthdate) VALUES (?, ?, ?, ?)";
         $stmt = $this->dbConnect->connect()->prepare($sql);
         $stmt->bindParam(1, $author->getFirstName());
@@ -55,43 +59,31 @@ class AuthorModel //CRUD with Database
     }
 
     //Cập nhật thông tin Author
-//    public function update($id, $author)
-//    {
-
-//        $sql = "UPDATE customers SET first_name = ?, last_name, email = ?, birthdate = ? WHERE id = ?";
-//        $stmt = $this->dbConnect->connect()->prepare($sql);
-//        $stmt->bindParam(1, $author->first_name);
-//        $stmt->bindParam(2, $author->last_name);
-//        $stmt->bindParam(3, $author->email);
-//        $stmt->bindParam(4, $author->birthdate);
-//        $stmt->bindParam(5, $id);
-//        return $stmt->execute();
-
-
-
-//        $sql = "UPDATE authors SET `first_name`=:fn, `last_name`=:ln, `email`=:email, `birthdate`=:dob
-//        where `id`=". $id;
-//        $stmt = $this->dbConnect->connect()->prepare($sql);
-//        $stmt->bindParam(":fn", $author->getFirstName());
-//        $stmt->bindParam(":ln", $author->getLastName());
-//        $stmt->bindParam(":email", $author->getEmail());
-//        $stmt->bindParam(":dob", $author->getBirthdate());
-//        $stmt->execute();
-//    }
+    public function update($id, $author)
+    {
+        $sql = "UPDATE `authors` SET first_name = ?, last_name = ?, email = ?, birthdate = ? WHERE id = ?";
+        $stmt = $this->dbConnect->connect()->prepare($sql);
+        $stmt->bindParam(1, $author->firstName);
+        $stmt->bindParam(2, $author->lastName);
+        $stmt->bindParam(3, $author->email);
+        $stmt->bindParam(4, $author->birthdate);
+        $stmt->bindParam(5, $id);
+        return $stmt->execute();
+    }
 
     //Xoá Author theo id
     public function delete($id)
     {
-        $sql = "DELETE FROM `authors` WHERE id =".$id;
+        $sql = "DELETE FROM `authors` WHERE id =" . $id;
         $stmt = $this->dbConnect->connect()->query($sql);
-        $stmt->execute();
+    return $stmt->execute();
 
     }
 
     public function convertToObject($data)
     {
         $authors = [];
-        foreach ($data as $item){
+        foreach ($data as $item) {
             $author = new Author($item->first_name, $item->last_name, $item->email, $item->birthdate);
             $author->setId($item->id);
             array_push($authors, $author);

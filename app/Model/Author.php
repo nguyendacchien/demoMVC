@@ -6,11 +6,11 @@ namespace App\Model;
 
 class Author
 {
-    private $id;
-    private $firstName;
-    private $lastName;
-    private $email;
-    private $birthdate;
+    public $id;
+    public $firstName;
+    public $lastName;
+    public $email;
+    public $birthdate;
 
     /**
      * Author constructor.
@@ -106,7 +106,6 @@ class Author
     {
         $this->birthdate = $birthdate;
     }
-
 
 
 }
