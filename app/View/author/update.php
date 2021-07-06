@@ -15,16 +15,23 @@
 <div class="col-12 col-md-12 mt-2">
     <div class="card">
         <div class="card-header">
-            Thêm mới khách hàng
+            Update author
         </div>
         <div class="card-body">
             <div class="col-12">
                 <form method="post">
                     <div class="mb-3">
-                        <label class="form-label">Tên</label>
-                        <input type="text" name="name" class="form-control">
-                        <?php if (isset($errors['name'])): ?>
-                            <p class="text-danger"><?php echo $errors['name'] ?></p>
+                        <label class="form-label">firstName</label>
+                        <input type="text" name="first-name" class="form-control">
+                        <?php if (isset($errors['first-name'])): ?>
+                            <p class="text-danger"><?php echo $errors['first-name'] ?></p>
+                        <?php endif; ?>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">lastName</label>
+                        <input type="text" name="last-name" class="form-control">
+                        <?php if (isset($errors['last-name'])): ?>
+                            <p class="text-danger"><?php echo $errors['last-name'] ?></p>
                         <?php endif; ?>
                     </div>
                     <div class="mb-3">
@@ -36,9 +43,9 @@
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Địa chỉ</label>
-                        <input type="text" class="form-control" name="address">
-                        <?php if (isset($errors['address'])): ?>
-                            <p class="text-danger"><?php echo $errors['address'] ?></p>
+                        <input type="date" class="form-control" name="birthdate">
+                        <?php if (isset($errors['birthdate'])): ?>
+                            <p class="text-danger"><?php echo $errors['birthdate'] ?></p>
                         <?php endif; ?>
                     </div>
                     <button type="submit" class="btn btn-primary">Lưu</button>
@@ -61,3 +68,4 @@
         crossorigin="anonymous"></script>
 </body>
 </html>
+

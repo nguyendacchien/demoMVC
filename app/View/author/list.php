@@ -1,9 +1,4 @@
-<?php
-//if (isset($authors)) {
-//    print_r($authors);
-//    die();
-//}
-//?>
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -17,32 +12,37 @@
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 <body>
-<table class="table">
-    <thead>
-    <tr>
-        <th scope="col">ID</th>
-        <th scope="col">First</th>
-        <th scope="col">Last</th>
-        <th scope="col">Email</th>
-        <th scope="col">Birthdate</th>
-    </tr>
-    </thead>
-    <tbody>
-    <?php if (isset($authors)) {
-//        echo "<pre>";
-        //var_dump($authors);
-        foreach ($authors as $author) :?>
-            <tr>
-                <td scope="row"><?php echo $author->getId()?></td>
-                <td><?php echo $author->getFirstName()?></td>
-                <td><?php echo $author->getLastName()?></td>
-                <td><?php echo $author->getEmail()?></td>
-                <td><?php echo $author->getBirthdate()?></td>
-            </tr>
-        <?php endforeach;
-    } ?>
-    </tbody>
-</table>
+<div class="container">
+    <a href="index.php?page=add" class="btn btn-lg btn-success mb-3 mt-3">Add Author</a>
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">First</th>
+            <th scope="col">Last</th>
+            <th scope="col">Email</th>
+            <th scope="col">Birthdate</th>
+            <th scope="col">Edit</th>
+            <th scope="col">Delete</th>
+        </tr>
+        </thead>
+        <tbody>
+        <?php if (isset($authors)) {
+            foreach ($authors as $author) :?>
+                <tr>
+                    <td><?php echo $author->getId()?></td>
+                    <td><?php echo $author->getFirstName()?></td>
+                    <td><?php echo $author->getLastName()?></td>
+                    <td><?php echo $author->getEmail()?></td>
+                    <td><?php echo $author->getBirthdate()?></td>
+                    <td><a href="index.php?page=delete&id=<?php echo $author->getID() ?>" onclick="return confirm('bạn chắc chắn muốn xóa?')">Delete</a></td>
+                    <td><a href="index.php?page=edit&id=<?php echo $author->getID() ?>">Edit</a></td>
+                </tr>
+            <?php endforeach;
+        } ?>
+        </tbody>
+    </table>
+</div>
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
@@ -56,4 +56,3 @@
         crossorigin="anonymous"></script>
 </body>
 </html>
-}
